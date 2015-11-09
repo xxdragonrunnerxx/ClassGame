@@ -24,6 +24,7 @@ namespace ClassGame
         public static int rooms = 15;
         public int counts = 0;
         public int[,] Center = new int[rooms, 2];
+        public int[,] Doors;
         public bool town = false;
         //creates wilderness
         public board(int x)
@@ -73,6 +74,7 @@ namespace ClassGame
         //creates town
         public board(int x, int y,int buildings)
         {
+            Doors = new int[buildings, 2];
             town = true;
             gameBoard = new tile[x, y];
             length = x;
@@ -96,10 +98,10 @@ namespace ClassGame
             }
             for (int count = 0; count < buildings; count++)
             {
-                newBuilding();
+                newBuilding(count);
             }
             inverseFloor(length, width);
-            setPlayer();
+            setPlayer(dieroller.totalRoll(1, 6));
         }
         //sets buildings
         private void inverseFloor(int lenght, int width)
@@ -148,7 +150,7 @@ namespace ClassGame
                 {
                     for (int b = 0; b < width; b++)
                     {
-                        if (gameBoard[a, b].playerHere || gameBoard[a, b].stairsHere)
+                        if (gameBoard[a, b].playerHere || gameBoard[a, b].stairsHere || gameBoard[a, b].door)
                         {
                             if (gameBoard[a, b].playerHere)
                             {
@@ -156,11 +158,17 @@ namespace ClassGame
                                 Console.BackgroundColor = ConsoleColor.DarkYellow;
                                 Console.Write("@");
                             }
-                            else
+                            else if (gameBoard[a, b].stairsHere)
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.BackgroundColor = ConsoleColor.DarkMagenta;
                                 Console.Write(">");
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.BackgroundColor = ConsoleColor.Blue;
+                                Console.Write("†");
                             }
                         }
                         else
@@ -511,7 +519,7 @@ namespace ClassGame
             }
 
         }
-        private void newBuilding()
+        private void newBuilding(int b)
         {
             int x = dieroller.totalRoll(1, length);
             int y = dieroller.totalRoll(1, width);
@@ -520,10 +528,10 @@ namespace ClassGame
             if (checkBuilding(h, w, x, y))
             {
                 counts++;
-                makeRoom(h, w, x, y);
+                makeBuilding(h, w, x, y, b);
             }
             else
-                newBuilding();
+                newBuilding(b);
         }
         //creates corridor between rooms
         private void corridor()
@@ -697,6 +705,24 @@ namespace ClassGame
                 x++;
             }
             return true;
+        }
+        private void makeBuilding(int l, int w, int x, int y,int building)
+        {
+            int y1 = y;
+            int x1 = x;
+            for (int a = 0; a <= l; a++)
+            {
+                for (int b = 0; b <= w; b++)
+                {
+                    setBuilding(x, y);
+                    y++;
+                }
+                y = y1;
+                x++;
+            }
+            Doors[building, 0] = (x1 + l);
+            Doors[building, 1] = (y1 + (w / 2));
+            setDoors(Doors[building, 0], Doors[building, 1]);
         }
         private bool checkRoom(int l, int w, int x, int y)
         {
@@ -930,6 +956,10 @@ namespace ClassGame
             }
             if (again)
                 setPlayer(dieroller.totalRoll(1, 6));
+        }
+        public void setDoors(int x, int y)
+        {
+            gameBoard[x, y].door = true;
         }
         private bool checkOddRoom(int s, int o, int x, int y)
         {

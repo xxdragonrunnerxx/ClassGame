@@ -24,6 +24,7 @@ namespace ClassGame
         public bool playerHere { get; set; }
         public bool stairsHere { get; set; }
         public bool wall { get; set; }
+        public bool door { get; set; }
         public tile(string s, ConsoleColor f, ConsoleColor b, bool w)
         {
             symbol = s;
