@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace ClassGame
 {
+    [Serializable]
     class board
     {
         private tile[,] gameBoard;
@@ -23,6 +24,7 @@ namespace ClassGame
         public static int rooms = 15;
         public int counts = 0;
         public int[,] Center = new int[rooms, 2];
+        public bool town = false;
         //creates wilderness
         public board(int x)
         {
@@ -71,6 +73,7 @@ namespace ClassGame
         //creates town
         public board(int x, int y,int buildings)
         {
+            town = true;
             gameBoard = new tile[x, y];
             length = x;
             width = y;
@@ -113,39 +116,364 @@ namespace ClassGame
                 }
             }
         }
-        //prints board
-        public void printBoard()
+        public int[] playerLocation()
         {
-
             for (int a = 0; a < length; a++)
             {
                 for (int b = 0; b < width; b++)
                 {
-                    if (gameBoard[a, b].playerHere || gameBoard[a, b].stairsHere)
+                    if (gameBoard[a, b].playerHere)
                     {
-                        if (gameBoard[a, b].playerHere)
+                        int[] player = { a, b };
+                        return player;
+                    }
+                }
+            }
+            int[] x = { 0, 0 };
+            return x;
+        }
+        //prints board
+        public void printBoard()
+        {
+            int[] player = playerLocation();
+            int x = player[0];
+            int y = player[1];
+            int startx = x - 3;
+            int starty = y - 5;
+            int endx = x + 3;
+            int endy = y + 5;
+            if (town)
+            {
+                for (int a = 0; a < length; a++)
+                {
+                    for (int b = 0; b < width; b++)
+                    {
+                        if (gameBoard[a, b].playerHere || gameBoard[a, b].stairsHere)
                         {
-                            Console.ForegroundColor = ConsoleColor.DarkBlue;
-                            Console.BackgroundColor = ConsoleColor.DarkYellow;
-                            Console.Write("@");
+                            if (gameBoard[a, b].playerHere)
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                Console.BackgroundColor = ConsoleColor.DarkYellow;
+                                Console.Write("@");
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                                Console.Write(">");
+                            }
                         }
                         else
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.BackgroundColor = ConsoleColor.DarkMagenta;
-                            Console.Write(">");
+                            Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                            Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                            Console.Write(gameBoard[a, b].symbol);
                         }
                     }
-                    else
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.WriteLine("");
+                }
+            }
+            else
+            {
+                if (startx >= 0 && starty >= 0 && endx <= length && endy <= width)
+                {
+                    for (int a = startx; a < endx; a++)
                     {
-                        Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
-                        Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
-                        Console.Write(gameBoard[a, b].symbol);
+                        for (int b = starty; b < endy; b++)
+                        {
+                            if (gameBoard[a, b].playerHere || gameBoard[a, b].stairsHere)
+                            {
+                                if (gameBoard[a, b].playerHere)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                    Console.BackgroundColor = ConsoleColor.DarkYellow;
+                                    Console.Write("@");
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                                    Console.Write(">");
+                                }
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                                Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                                Console.Write(gameBoard[a, b].symbol);
+                            }
+                        }
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.WriteLine("");
                     }
                 }
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.WriteLine("");
+                else if (startx < 0 && starty >= 0 && endx <= length && endy <= width)
+                {
+                    for (int a = 0; a < 6; a++)
+                    {
+                        for (int b = starty; b < endy; b++)
+                        {
+                            if (gameBoard[a, b].playerHere || gameBoard[a, b].stairsHere)
+                            {
+                                if (gameBoard[a, b].playerHere)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                    Console.BackgroundColor = ConsoleColor.DarkYellow;
+                                    Console.Write("@");
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                                    Console.Write(">");
+                                }
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                                Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                                Console.Write(gameBoard[a, b].symbol);
+                            }
+                        }
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.WriteLine("");
+                    }
+                }
+                else if (startx < 0 && starty < 0 && endx <= length && endy <= width)
+                {
+                    for (int a = 0; a < 6; a++)
+                    {
+                        for (int b = 0; b < 10; b++)
+                        {
+                            if (gameBoard[a, b].playerHere || gameBoard[a, b].stairsHere)
+                            {
+                                if (gameBoard[a, b].playerHere)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                    Console.BackgroundColor = ConsoleColor.DarkYellow;
+                                    Console.Write("@");
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                                    Console.Write(">");
+                                }
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                                Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                                Console.Write(gameBoard[a, b].symbol);
+                            }
+                        }
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.WriteLine("");
+                    }
+                }
+                else if (startx >= 0 && starty < 0 && endx <= length && endy <= width)
+                {
+                    for (int a = startx; a < endx; a++)
+                    {
+                        for (int b = 0; b < 10; b++)
+                        {
+                            if (gameBoard[a, b].playerHere || gameBoard[a, b].stairsHere)
+                            {
+                                if (gameBoard[a, b].playerHere)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                    Console.BackgroundColor = ConsoleColor.DarkYellow;
+                                    Console.Write("@");
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                                    Console.Write(">");
+                                }
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                                Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                                Console.Write(gameBoard[a, b].symbol);
+                            }
+                        }
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.WriteLine("");
+                    }
+                }
+                else if (startx >= 0 && starty >= 0 && endx > length && endy <= width)
+                {
+                    for (int a = length - 6; a < length; a++)
+                    {
+                        for (int b = starty; b < endy; b++)
+                        {
+                            if (gameBoard[a, b].playerHere || gameBoard[a, b].stairsHere)
+                            {
+                                if (gameBoard[a, b].playerHere)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                    Console.BackgroundColor = ConsoleColor.DarkYellow;
+                                    Console.Write("@");
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                                    Console.Write(">");
+                                }
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                                Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                                Console.Write(gameBoard[a, b].symbol);
+                            }
+                        }
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.WriteLine("");
+                    }
+                }
+                else if (startx >= 0 && starty >= 0 && endx <= length && endy > width)
+                {
+                    for (int a = startx; a < endx; a++)
+                    {
+                        for (int b = width - 10; b < width; b++)
+                        {
+                            if (gameBoard[a, b].playerHere || gameBoard[a, b].stairsHere)
+                            {
+                                if (gameBoard[a, b].playerHere)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                    Console.BackgroundColor = ConsoleColor.DarkYellow;
+                                    Console.Write("@");
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                                    Console.Write(">");
+                                }
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                                Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                                Console.Write(gameBoard[a, b].symbol);
+                            }
+                        }
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.WriteLine("");
+                    }
+                }
+                else if (startx > 0 && starty > 0 && endx > length && endy > width)
+                {
+                    for (int a = length - 6; a < length; a++)
+                    {
+                        for (int b = width - 10; b < width; b++)
+                        {
+                            if (gameBoard[a, b].playerHere || gameBoard[a, b].stairsHere)
+                            {
+                                if (gameBoard[a, b].playerHere)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                    Console.BackgroundColor = ConsoleColor.DarkYellow;
+                                    Console.Write("@");
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                                    Console.Write(">");
+                                }
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                                Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                                Console.Write(gameBoard[a, b].symbol);
+                            }
+                        }
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.WriteLine("");
+                    }
+                }
+                else if (startx >= 0 && starty < 0 && endx > length && endy <= width)
+                {
+                    for (int a = length - 6; a < length; a++)
+                    {
+                        for (int b = 0; b < 10; b++)
+                        {
+                            if (gameBoard[a, b].playerHere || gameBoard[a, b].stairsHere)
+                            {
+                                if (gameBoard[a, b].playerHere)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                    Console.BackgroundColor = ConsoleColor.DarkYellow;
+                                    Console.Write("@");
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                                    Console.Write(">");
+                                }
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                                Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                                Console.Write(gameBoard[a, b].symbol);
+                            }
+                        }
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.WriteLine("");
+                    }
+                }
+                else if (startx < 0 && starty >= 0 && endx <= length && endy > width)
+                {
+                    for (int a = 0; a < 6; a++)
+                    {
+                        for (int b = width - 10; b < width; b++)
+                        {
+                            if (gameBoard[a, b].playerHere || gameBoard[a, b].stairsHere)
+                            {
+                                if (gameBoard[a, b].playerHere)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                    Console.BackgroundColor = ConsoleColor.DarkYellow;
+                                    Console.Write("@");
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                                    Console.Write(">");
+                                }
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                                Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                                Console.Write(gameBoard[a, b].symbol);
+                            }
+                        }
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.WriteLine("");
+                    }
+                }
             }
         }
 
@@ -330,17 +658,22 @@ namespace ClassGame
         private void setWildernessFloor(int x, int y)
         {
             gameBoard[x, y].symbol = ".";
+            gameBoard[x, y].wall = false;
             gameBoard[x, y].ForegroundColor = ConsoleColor.Blue;
             gameBoard[x, y].BackgroundColor = ConsoleColor.DarkGreen;
         }
         private void setSidewalk(int x, int y)
         {
+
+            gameBoard[x, y].wall = false;
             gameBoard[x, y].symbol = ".";
             gameBoard[x, y].ForegroundColor = ConsoleColor.Blue;
             gameBoard[x, y].BackgroundColor = ConsoleColor.DarkGreen;
         }
         private void setBuilding(int x, int y)
         {
+
+            gameBoard[x, y].wall = true;
             gameBoard[x, y].symbol = "‡";
             gameBoard[x, y].ForegroundColor = ConsoleColor.Blue;
             gameBoard[x, y].BackgroundColor = ConsoleColor.DarkGreen;
@@ -408,12 +741,12 @@ namespace ClassGame
                     if (random >= d)
                     {
                         gameBoard[a, b].symbol = ".";
+                        gameBoard[a, b].wall = false;
                         gameBoard[a, b].ForegroundColor = ConsoleColor.Blue;
                         gameBoard[a, b].BackgroundColor = ConsoleColor.DarkGreen;
                     }
                     else
                     {
-                        gameBoard[a, b].wall = false;
                         gameBoard[a, b].symbol = "^";
                         gameBoard[a, b].ForegroundColor = ConsoleColor.DarkGreen;
                         gameBoard[a, b].BackgroundColor = ConsoleColor.Black;
@@ -724,6 +1057,65 @@ namespace ClassGame
                     y = y1;
                     x++;
                 }
+            }
+        }
+        public bool checkStairs(int x, int y)
+        {
+            if (gameBoard[x, y].stairsHere)
+                return true;
+            return false;
+        }
+        public void moveRIGHT(int x, int y)
+        {
+            try {
+                if (Movement.canMove(gameBoard[x, y + 1]))
+                {
+                    gameBoard[x, y].playerHere = false;
+                    gameBoard[x, y + 1].playerHere = true;
+                }
+            }
+            catch (IndexOutOfRangeException i)
+            {
+            }
+        }
+        public void moveLEFT(int x, int y)
+        {
+            try
+            {
+                if (Movement.canMove(gameBoard[x, y - 1]))
+                {
+                    gameBoard[x, y].playerHere = false;
+                    gameBoard[x, y - 1].playerHere = true;
+                }
+            }
+            catch (IndexOutOfRangeException i)
+            {
+            }
+        }
+        public void moveDOWN(int x, int y)
+        {
+            try {
+                if (Movement.canMove(gameBoard[x + 1, y]))
+                {
+                    gameBoard[x, y].playerHere = false;
+                    gameBoard[x + 1, y].playerHere = true;
+                }
+            }
+            catch (IndexOutOfRangeException i)
+            {
+            }
+}
+        public void moveUP(int x, int y)
+        {
+            try {
+                if (Movement.canMove(gameBoard[x - 1, y]))
+                {
+                    gameBoard[x, y].playerHere = false;
+                    gameBoard[x - 1, y].playerHere = true;
+                }
+            }
+            catch (IndexOutOfRangeException i)
+            {
             }
         }
     }

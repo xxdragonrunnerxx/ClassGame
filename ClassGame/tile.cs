@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace ClassGame
 {
+    [Serializable]
     class tile
     {
         public string symbol { get; set; }
@@ -31,6 +32,13 @@ namespace ClassGame
             playerHere = false;
             stairsHere = false;
             wall = w;
+        }
+        public bool isWall()
+        {
+            if (wall)
+                return false;
+            else
+                return true;
         }
 
     }
