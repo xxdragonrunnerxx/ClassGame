@@ -28,9 +28,28 @@ namespace ClassGame
         {
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             ShowWindow(ThisConsole, MAXIMIZE);
-            board map = new board(60,60,20);
-            map.printBoard();
-            Console.ReadKey();
+            MainGame();
+
+        }
+        public static void MainGame()
+        {
+            board[] map = new board[15];
+            map[0] = new board(60);
+            map[1] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3), 20);
+            map[2] = new board(60);
+            map[3] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
+            map[4] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
+            map[5] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
+            map[6] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
+            map[7] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
+            map[8] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3), 15);
+            map[9] = new board(60);
+            map[10] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
+            map[11] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
+            map[12] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
+            map[13] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
+            map[14] = new board(70, 180);
+            
         }
     }
 }

@@ -18,8 +18,8 @@ namespace ClassGame
     class board
     {
         private tile[,] gameBoard;
-        public int length=60;
-        public int width=180;
+        public int length= dieroller.totalRoll(10, 7);
+        public int width=dieroller.totalRoll(10, 15);
         public static int rooms = 15;
         public int counts = 0;
         public int[,] Center = new int[rooms, 2];
@@ -143,6 +143,8 @@ namespace ClassGame
                         Console.Write(gameBoard[a, b].symbol);
                     }
                 }
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.Black;
                 Console.WriteLine("");
             }
         }
