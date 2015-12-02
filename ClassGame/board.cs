@@ -19,13 +19,15 @@ namespace ClassGame
     class board
     {
         private tile[,] gameBoard;
-        public int length= dieroller.totalRoll(10, 7);
-        public int width=dieroller.totalRoll(10, 15);
+        public int length= dieroller.totalRoll(10, 20);
+        public int width=dieroller.totalRoll(10, 10);
         public static int rooms = 15;
         public int counts = 0;
         public int[,] Center = new int[rooms, 2];
         public int[,] Doors;
         public bool town = false;
+        public string story { get; set; }
+        
         //creates wilderness
         public board(int x)
         {
@@ -34,7 +36,7 @@ namespace ClassGame
             {
                 for (int b = 0; b < width; b++)
                 {
-                    gameBoard[a, b] = new tile(".", ConsoleColor.Blue, ConsoleColor.DarkGreen, true);
+                    gameBoard[a, b] = new tile(" ", ConsoleColor.Blue, ConsoleColor.DarkGreen, true);
                 }
             }
             createWilderness(x);
@@ -58,7 +60,6 @@ namespace ClassGame
             {
                 for (int b = 1; b < width - 1; b++)
                 {
-                    gameBoard[a, b].wall = false;
                     gameBoard[a, b].ForegroundColor = ConsoleColor.DarkGray;
                     gameBoard[a, b].BackgroundColor = ConsoleColor.Black;
                 }
@@ -102,6 +103,7 @@ namespace ClassGame
             }
             inverseFloor(length, width);
             setPlayer(dieroller.totalRoll(1, 6));
+            setStairs(true);
         }
         //sets buildings
         private void inverseFloor(int lenght, int width)
@@ -195,23 +197,54 @@ namespace ClassGame
                             {
                                 if (gameBoard[a, b].playerHere)
                                 {
+                                    Console.SetCursorPosition(a, b);
                                     Console.ForegroundColor = ConsoleColor.DarkBlue;
                                     Console.BackgroundColor = ConsoleColor.DarkYellow;
                                     Console.Write("@");
                                 }
                                 else
                                 {
+                                    Console.SetCursorPosition(a , b );
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.BackgroundColor = ConsoleColor.DarkMagenta;
-                                    Console.Write(">");
+                                    Console.Write("‡");
                                 }
                             }
                             else
                             {
+                                Console.SetCursorPosition(a , b );
                                 Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
                                 Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
                                 Console.Write(gameBoard[a, b].symbol);
                             }
+                            //    if (gameBoard[a, b].playerHere)
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                            //        Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            //        Console.Write("@@");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("@@");
+                            //    }
+                            //    else
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.Red;
+                            //        Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                            //        Console.Write("‡‡");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("‡‡");
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //    Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                            //    Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //    Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //}
                         }
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.Black;
@@ -228,23 +261,54 @@ namespace ClassGame
                             {
                                 if (gameBoard[a, b].playerHere)
                                 {
+                                    Console.SetCursorPosition(a, b);
                                     Console.ForegroundColor = ConsoleColor.DarkBlue;
                                     Console.BackgroundColor = ConsoleColor.DarkYellow;
                                     Console.Write("@");
                                 }
                                 else
                                 {
+                                    Console.SetCursorPosition(a , b );
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.BackgroundColor = ConsoleColor.DarkMagenta;
-                                    Console.Write(">");
+                                    Console.Write("‡");
                                 }
                             }
                             else
                             {
+                                Console.SetCursorPosition(a , b );
                                 Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
                                 Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
                                 Console.Write(gameBoard[a, b].symbol);
                             }
+                            //    if (gameBoard[a, b].playerHere)
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                            //        Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            //        Console.Write("@@");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("@@");
+                            //    }
+                            //    else
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.Red;
+                            //        Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                            //        Console.Write("‡‡");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("‡‡");
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //    Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                            //    Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //    Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //}
                         }
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.Black;
@@ -261,23 +325,54 @@ namespace ClassGame
                             {
                                 if (gameBoard[a, b].playerHere)
                                 {
+                                    Console.SetCursorPosition(a , b);
                                     Console.ForegroundColor = ConsoleColor.DarkBlue;
                                     Console.BackgroundColor = ConsoleColor.DarkYellow;
                                     Console.Write("@");
                                 }
                                 else
                                 {
+                                    Console.SetCursorPosition(a , b );
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.BackgroundColor = ConsoleColor.DarkMagenta;
-                                    Console.Write(">");
+                                    Console.Write("‡");
                                 }
                             }
                             else
                             {
+                                Console.SetCursorPosition(a , b );
                                 Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
                                 Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
                                 Console.Write(gameBoard[a, b].symbol);
                             }
+                            //    if (gameBoard[a, b].playerHere)
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                            //        Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            //        Console.Write("@@");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("@@");
+                            //    }
+                            //    else
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.Red;
+                            //        Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                            //        Console.Write("‡‡");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("‡‡");
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //    Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                            //    Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //    Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //}
                         }
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.Black;
@@ -294,23 +389,54 @@ namespace ClassGame
                             {
                                 if (gameBoard[a, b].playerHere)
                                 {
+                                    Console.SetCursorPosition(a, b);
                                     Console.ForegroundColor = ConsoleColor.DarkBlue;
                                     Console.BackgroundColor = ConsoleColor.DarkYellow;
                                     Console.Write("@");
                                 }
                                 else
                                 {
+                                    Console.SetCursorPosition(a , b );
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.BackgroundColor = ConsoleColor.DarkMagenta;
-                                    Console.Write(">");
+                                    Console.Write("‡");
                                 }
                             }
                             else
                             {
+                                Console.SetCursorPosition(a , b );
                                 Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
                                 Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
                                 Console.Write(gameBoard[a, b].symbol);
                             }
+                            //    if (gameBoard[a, b].playerHere)
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                            //        Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            //        Console.Write("@@");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("@@");
+                            //    }
+                            //    else
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.Red;
+                            //        Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                            //        Console.Write("‡‡");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("‡‡");
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //    Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                            //    Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //    Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //}
                         }
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.Black;
@@ -327,23 +453,54 @@ namespace ClassGame
                             {
                                 if (gameBoard[a, b].playerHere)
                                 {
+                                    Console.SetCursorPosition(a, b);
                                     Console.ForegroundColor = ConsoleColor.DarkBlue;
                                     Console.BackgroundColor = ConsoleColor.DarkYellow;
                                     Console.Write("@");
                                 }
                                 else
                                 {
+                                    Console.SetCursorPosition(a , b );
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.BackgroundColor = ConsoleColor.DarkMagenta;
-                                    Console.Write(">");
+                                    Console.Write("‡");
                                 }
                             }
                             else
                             {
+                                Console.SetCursorPosition(a , b );
                                 Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
                                 Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
                                 Console.Write(gameBoard[a, b].symbol);
                             }
+                            //    if (gameBoard[a, b].playerHere)
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                            //        Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            //        Console.Write("@@");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("@@");
+                            //    }
+                            //    else
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.Red;
+                            //        Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                            //        Console.Write("‡‡");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("‡‡");
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //    Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                            //    Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //    Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //}
                         }
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.Black;
@@ -360,23 +517,54 @@ namespace ClassGame
                             {
                                 if (gameBoard[a, b].playerHere)
                                 {
+                                    Console.SetCursorPosition(a , b);
                                     Console.ForegroundColor = ConsoleColor.DarkBlue;
                                     Console.BackgroundColor = ConsoleColor.DarkYellow;
                                     Console.Write("@");
                                 }
                                 else
                                 {
+                                    Console.SetCursorPosition(a , b );
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.BackgroundColor = ConsoleColor.DarkMagenta;
-                                    Console.Write(">");
+                                    Console.Write("‡");
                                 }
                             }
                             else
                             {
+                                Console.SetCursorPosition(a , b );
                                 Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
                                 Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
                                 Console.Write(gameBoard[a, b].symbol);
                             }
+                            //    if (gameBoard[a, b].playerHere)
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                            //        Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            //        Console.Write("@@");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("@@");
+                            //    }
+                            //    else
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.Red;
+                            //        Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                            //        Console.Write("‡‡");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("‡‡");
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //    Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                            //    Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //    Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //}
                         }
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.Black;
@@ -393,23 +581,54 @@ namespace ClassGame
                             {
                                 if (gameBoard[a, b].playerHere)
                                 {
+                                    Console.SetCursorPosition(a , b);
                                     Console.ForegroundColor = ConsoleColor.DarkBlue;
                                     Console.BackgroundColor = ConsoleColor.DarkYellow;
                                     Console.Write("@");
                                 }
                                 else
                                 {
+                                    Console.SetCursorPosition(a , b );
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.BackgroundColor = ConsoleColor.DarkMagenta;
-                                    Console.Write(">");
+                                    Console.Write("‡");
                                 }
                             }
                             else
                             {
+                                Console.SetCursorPosition(a , b );
                                 Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
                                 Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
                                 Console.Write(gameBoard[a, b].symbol);
                             }
+                            //    if (gameBoard[a, b].playerHere)
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                            //        Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            //        Console.Write("@@");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("@@");
+                            //    }
+                            //    else
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.Red;
+                            //        Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                            //        Console.Write("‡‡");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("‡‡");
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //    Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                            //    Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //    Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //}
                         }
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.Black;
@@ -426,23 +645,54 @@ namespace ClassGame
                             {
                                 if (gameBoard[a, b].playerHere)
                                 {
+                                    Console.SetCursorPosition(a , b);
                                     Console.ForegroundColor = ConsoleColor.DarkBlue;
                                     Console.BackgroundColor = ConsoleColor.DarkYellow;
                                     Console.Write("@");
                                 }
                                 else
                                 {
+                                    Console.SetCursorPosition(a , b );
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.BackgroundColor = ConsoleColor.DarkMagenta;
-                                    Console.Write(">");
+                                    Console.Write("‡");
                                 }
                             }
                             else
                             {
+                                Console.SetCursorPosition(a , b );
                                 Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
                                 Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
                                 Console.Write(gameBoard[a, b].symbol);
                             }
+                            //    if (gameBoard[a, b].playerHere)
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                            //        Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            //        Console.Write("@@");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("@@");
+                            //    }
+                            //    else
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.Red;
+                            //        Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                            //        Console.Write("‡‡");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("‡‡");
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //    Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                            //    Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //    Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //}
                         }
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.Black;
@@ -459,23 +709,54 @@ namespace ClassGame
                             {
                                 if (gameBoard[a, b].playerHere)
                                 {
+                                    Console.SetCursorPosition(a , b );
                                     Console.ForegroundColor = ConsoleColor.DarkBlue;
                                     Console.BackgroundColor = ConsoleColor.DarkYellow;
                                     Console.Write("@");
                                 }
                                 else
                                 {
+                                    Console.SetCursorPosition(a, b);
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.BackgroundColor = ConsoleColor.DarkMagenta;
-                                    Console.Write(">");
+                                    Console.Write("‡");
                                 }
                             }
                             else
                             {
+                                Console.SetCursorPosition(a , b);
                                 Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
                                 Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
                                 Console.Write(gameBoard[a, b].symbol);
                             }
+                            //    if (gameBoard[a, b].playerHere)
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                            //        Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            //        Console.Write("@@");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("@@");
+                            //    }
+                            //    else
+                            //    {
+                            //        Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //        Console.ForegroundColor = ConsoleColor.Red;
+                            //        Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                            //        Console.Write("‡‡");
+                            //        Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //        Console.Write("‡‡");
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    Console.SetCursorPosition(a + (a * 2), b + (b * 2));
+                            //    Console.ForegroundColor = gameBoard[a, b].ForegroundColor;
+                            //    Console.BackgroundColor = gameBoard[a, b].BackgroundColor;
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //    Console.SetCursorPosition(a + (a * 2), b + 1 + (b * 2));
+                            //    Console.Write(gameBoard[a, b].symbol + gameBoard[a, b].symbol);
+                            //}
                         }
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.Black;
@@ -659,13 +940,14 @@ namespace ClassGame
         }
         private void setFloor(int x, int y)
         {
-            gameBoard[x, y].symbol = "`";
+            gameBoard[x, y].symbol = " ";
+            gameBoard[x, y].wall = false;
             gameBoard[x, y].ForegroundColor = ConsoleColor.Blue;
-            gameBoard[x, y].BackgroundColor = ConsoleColor.Green;
+            gameBoard[x, y].BackgroundColor = ConsoleColor.DarkRed;
         }
         private void setWildernessFloor(int x, int y)
         {
-            gameBoard[x, y].symbol = ".";
+            gameBoard[x, y].symbol = " ";
             gameBoard[x, y].wall = false;
             gameBoard[x, y].ForegroundColor = ConsoleColor.Blue;
             gameBoard[x, y].BackgroundColor = ConsoleColor.DarkGreen;
@@ -674,7 +956,7 @@ namespace ClassGame
         {
 
             gameBoard[x, y].wall = false;
-            gameBoard[x, y].symbol = ".";
+            gameBoard[x, y].symbol = " ";
             gameBoard[x, y].ForegroundColor = ConsoleColor.Blue;
             gameBoard[x, y].BackgroundColor = ConsoleColor.DarkGreen;
         }
@@ -787,6 +1069,19 @@ namespace ClassGame
         {
             int x = StaticRandom.Instance.Next(1, length);
             int y = StaticRandom.Instance.Next(1, width);
+            if (string.Compare(gameBoard[x, y].symbol, "#") != 0)
+            {
+                gameBoard[x, y].stairsHere = true;
+                Center[0, 0] = x;
+                Center[0, 1] = y;
+            }
+            else
+                setStairs();
+        }
+        private void setStairs(bool town)
+        {
+            int x = length-1;
+            int y = width / 2;
             if (string.Compare(gameBoard[x, y].symbol, "#") != 0)
             {
                 gameBoard[x, y].stairsHere = true;
@@ -1095,7 +1390,7 @@ namespace ClassGame
                 return true;
             return false;
         }
-        public void moveRIGHT(int x, int y)
+        public void moveDOWN(int x, int y)
         {
             try {
                 if (Movement.canMove(gameBoard[x, y + 1]))
@@ -1108,7 +1403,7 @@ namespace ClassGame
             {
             }
         }
-        public void moveLEFT(int x, int y)
+        public void moveUP(int x, int y)
         {
             try
             {
@@ -1122,7 +1417,7 @@ namespace ClassGame
             {
             }
         }
-        public void moveDOWN(int x, int y)
+        public void moveRIGHT(int x, int y)
         {
             try {
                 if (Movement.canMove(gameBoard[x + 1, y]))
@@ -1135,7 +1430,7 @@ namespace ClassGame
             {
             }
 }
-        public void moveUP(int x, int y)
+        public void moveLEFT(int x, int y)
         {
             try {
                 if (Movement.canMove(gameBoard[x - 1, y]))

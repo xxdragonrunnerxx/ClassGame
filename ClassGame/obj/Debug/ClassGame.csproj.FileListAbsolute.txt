@@ -10,3 +10,5 @@ T:\School\C#\ClassGame\ClassGame\obj\Debug\ClassGame.pdb
 T:\School\C#\ClassGame\ClassGame\obj\Debug\ClassGame.csprojResolveAssemblyReference.cache
 T:\School\C#\ClassGame\ClassGame\bin\Debug\ClassGame.exe
 T:\School\C#\ClassGame\ClassGame\bin\Debug\ClassGame.pdb
+E:\School\C#\ClassGame\ClassGame\obj\Debug\ClassGame.Form1.resources
+E:\School\C#\ClassGame\ClassGame\obj\Debug\ClassGame.csproj.GenerateResource.Cache
