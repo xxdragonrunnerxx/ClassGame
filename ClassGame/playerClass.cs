@@ -116,9 +116,9 @@ namespace ClassGame
 
         private string genMaleName()
         {
-            string[] titleM = { "Sir ", "Mr. ", "Dr. ", "Sultan ", "Professor ", "Prince ", "King ", "Duke ", "Baron ", "Count " }
+            string[] titleM = { "Sir ", "Mr. ", "Dr. ", "Sultan ", "Professor ", "Prince ", "King ", "Duke ", "Baron ", "Count " };
 
-            string[] firstM = { "Uranius ", "Aloysius ", "Augustus ", "Octavius ", "Adolphus ", "Valerius ", "Heinrich ", "Amadeus ", "Severus ", "Wilhelm " }
+            string[] firstM = { "Uranius ", "Aloysius ", "Augustus ", "Octavius ", "Adolphus ", "Valerius ", "Heinrich ", "Amadeus ", "Severus ", "Wilhelm " };
 
             string[] middleName = { "P. ", "Q. ", "L. ", "Z. ", "W. ", "Y. ", "X. ", "E. ", "V. ", "U. " };
 
