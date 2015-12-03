@@ -30,9 +30,11 @@ namespace ClassGame
             ShowWindow(ThisConsole, MAXIMIZE);
             bool again = true;
             gameSave save;
+
             playerClass character;
             int floor=0;
             board[] gameMaps = new board[15];
+            
             do
             {
                 Console.Write("Do you want to load a game?Y/N");
@@ -61,7 +63,6 @@ namespace ClassGame
                 }
             } while (again);
             MainGame.Play(character, gameMaps, floor);
-            Save(character, gameMaps, floor);
         }
         public static void Save(playerClass p, board[] b, int f)
         {
@@ -70,23 +71,28 @@ namespace ClassGame
         }
         public static board[] newMaps()
         {
+            String[] story = Story.newStory();
             board[] map = new board[15];
             map[0] = new board(60);
             map[1] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3), 20);
             map[2] = new board(60);
-            map[3] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
-            map[4] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
-            map[5] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
-            map[6] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
-            map[7] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
+            map[3] = new board(dieroller.totalRoll(50, 3), dieroller.totalRoll(35, 2));
+            map[4] = new board(dieroller.totalRoll(50, 3), dieroller.totalRoll(35, 2));
+            map[5] = new board(dieroller.totalRoll(50, 3), dieroller.totalRoll(35, 2));
+            map[6] = new board(dieroller.totalRoll(50, 3), dieroller.totalRoll(35, 2));
+            map[7] = new board(dieroller.totalRoll(50, 3), dieroller.totalRoll(35, 2));
             map[8] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3), 15);
             map[9] = new board(60);
-            map[10] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
-            map[11] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
-            map[12] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
-            map[13] = new board(dieroller.totalRoll(35, 2), dieroller.totalRoll(50, 3));
+            map[10] = new board(dieroller.totalRoll(50, 3), dieroller.totalRoll(35, 2));
+            map[11] = new board(dieroller.totalRoll(50, 3), dieroller.totalRoll(35, 2));
+            map[12] = new board(dieroller.totalRoll(50, 3), dieroller.totalRoll(35, 2));
+            map[13] = new board(dieroller.totalRoll(50, 3), dieroller.totalRoll(35, 2));
             map[14] = new board(70, 180);
-            return map;
+            for (int i = 0; i < 15; i++ )
+            {
+                map[i].story = story[i];
+            }
+                return map;
         }
         public static void saveGame(gameSave save)
         {
@@ -159,39 +165,56 @@ namespace ClassGame
             } while (again);
             return saveSlot;
         }
-        public static void printSaves()
+        public static gameSave callSave(int x)
         {
             gameSave save;
             string fileName = "test.dat";
-            for (int x = 1; x <= 4; x++)
+            fileName = "save" + x + ".dat";
+            try
             {
+                System.IO.Stream fs = File.Open(fileName, FileMode.Open);
 
-                Console.WriteLine("");
-                Console.WriteLine("Save " + x + ":");
-                fileName = "save" + x + ".dat";
-                try
-                {
-                    System.IO.Stream fs = File.Open(fileName, FileMode.Open);
+                BinaryFormatter formatter = new BinaryFormatter();
 
-                    BinaryFormatter formatter = new BinaryFormatter();
-
-                    object obj = formatter.Deserialize(fs);
-                    save = (gameSave)obj;
-                    fs.Flush();
-                    fs.Close();
-                    fs.Dispose();
-                    Console.WriteLine("Name: " + save.player.getName());
-                    Console.WriteLine("Floor: " + save.floor);
-                }
-                catch (FileNotFoundException save1)//catches if can't find file
-                {
-                    Console.WriteLine("No Save File.");
-                }
-                catch (ArgumentException save1)
-                {
-                    Console.WriteLine("Please enter a file name.");
-                }
+                object obj = formatter.Deserialize(fs);
+                save = (gameSave)obj;
+                fs.Flush();
+                fs.Close();
+                fs.Dispose();
+                return save;
             }
+            catch (FileNotFoundException save1)//catches if can't find file
+            {
+            }
+            catch (ArgumentException save1)
+            {
+            }
+            return new gameSave(new playerClass("None"), new board[15], 0);
+
+        }
+        public static void printSaves()
+        {
+            gameSave save1 = callSave(1);
+            gameSave save2 = callSave(2);
+            gameSave save3 = callSave(3);
+            gameSave save4 = callSave(4);
+
+            Console.WriteLine("");
+            Console.WriteLine("Save 1:");
+            Console.WriteLine("Name: " + save1.player.getName());
+            Console.WriteLine("Floor: " + save1.floor);
+            Console.WriteLine("");
+            Console.WriteLine("Save 2:");
+            Console.WriteLine("Name: " + save2.player.getName());
+            Console.WriteLine("Floor: " + save2.floor);
+            Console.WriteLine("");
+            Console.WriteLine("Save 3:");
+            Console.WriteLine("Name: " + save3.player.getName());
+            Console.WriteLine("Floor: " + save3.floor);
+            Console.WriteLine("");
+            Console.WriteLine("Save 4:");
+            Console.WriteLine("Name: " + save4.player.getName());
+            Console.WriteLine("Floor: " + save4.floor);
         }
         public static gameSave loadGame()
         {
