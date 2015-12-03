@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassGame
 {
-     
+    [Serializable]
     class consumable
     {
         public string name;

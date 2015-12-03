@@ -134,8 +134,6 @@ namespace ClassGame
                 newBuilding(count);
             }
             inverseFloor(length, width);
-            setPlayer(dieroller.totalRoll(1, 6));
-            setStairs(true);
         }
         //sets buildings
         private void inverseFloor(int lenght, int width)

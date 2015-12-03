@@ -48,18 +48,21 @@ namespace ClassGame
                 int[] player = presentMap.playerLocation();
                 int x = player[0];
                 int y = player[1];
-                cki = Console.ReadKey();
+                
                 if (presentMap.town)
                 {
                     Console.WriteLine("Where would you like to go?");
                     Console.Write("(G)eneral Store, (A)rmory, (O)ut of Town:");
+                    cki = Console.ReadKey();
                     if (cki.Key == ConsoleKey.G)
                     {
                         //run general store
+                        clearScreen();
                     }
                     else if (cki.Key == ConsoleKey.A)
                     {
                         //run armory
+                        clearScreen();
                     }
                     else if (cki.Key == ConsoleKey.O)
                     {
@@ -69,6 +72,7 @@ namespace ClassGame
                 }
                 else
                 {
+                    cki = Console.ReadKey();
                     if (cki.Key == ConsoleKey.UpArrow)
                         presentMap.moveUP(x, y);
                     else if (cki.Key == ConsoleKey.DownArrow)
@@ -110,21 +114,31 @@ namespace ClassGame
             Console.WriteLine("      ▀       ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀▀▀▀▀▀▀▀▀▀▀  ▀        ▀▀  ▀▀▀▀▀▀▀▀▀▀  ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
+            Console.ReadLine();
         }
         //loosing screen
         public static void endGame()
         {
+            clearScreen();
+            int pauseTime = 200;
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine(" ▄▀▀▀▀▄    ▄▀▀█▄   ▄▀▀▄ ▄▀▄  ▄▀▀█▄▄▄▄      ▄▀▀▀▀▄   ▄▀▀▄ ▄▀▀▄  ▄▀▀█▄▄▄▄  ▄▀▀▄▀▀▀▄  ");
+            System.Threading.Thread.Sleep(pauseTime);
             Console.WriteLine(" █         ▐ ▄▀ ▀▄ █  █ ▀  █ ▐  ▄▀   ▐     █      █ █   █    █ ▐  ▄▀   ▐ █   █   █ ");
+            System.Threading.Thread.Sleep(pauseTime);
             Console.WriteLine(" █    ▀▄▄    █▄▄▄█ ▐  █    █   █▄▄▄▄▄      █      █ ▐  █    █    █▄▄▄▄▄  ▐  █▀▀█▀  ");
+            System.Threading.Thread.Sleep(pauseTime);
             Console.WriteLine(" █     █ █  ▄▀   █   █    █    █    ▌      ▀▄    ▄▀    █   ▄▀    █    ▌   ▄▀    █  ");
+            System.Threading.Thread.Sleep(pauseTime);
             Console.WriteLine(" ▐▀▄▄▄▄▀ ▐ █   ▄▀  ▄▀   ▄▀    ▄▀▄▄▄▄         ▀▀▀▀       ▀▄▀     ▄▀▄▄▄▄   █     █   ");
+            System.Threading.Thread.Sleep(pauseTime);
             Console.WriteLine(" ▐         ▐   ▐   █    █     █    ▐                            █    ▐   ▐     ▐   ");
+            System.Threading.Thread.Sleep(pauseTime);
             Console.WriteLine("                   ▐    ▐     ▐                                 ▐                  ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
+            Console.ReadLine();
         }
         //clears screen
         public static void clearScreen()

@@ -9,7 +9,7 @@ namespace ClassGame
     // Item limit of 20
     // consumables are stackable up to 15... for now
     // drop items and destroys (maybe)
-    
+    [Serializable]
     public class inventorySystem
     {
         private const int maxItemslots = 20;

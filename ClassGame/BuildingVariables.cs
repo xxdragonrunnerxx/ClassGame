@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassGame
 {
+    [Serializable]
     class Person
     {
         public string Name { get; set; }

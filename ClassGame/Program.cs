@@ -156,7 +156,7 @@ namespace ClassGame
             BinaryFormatter formatter = new BinaryFormatter();
 
             formatter.Serialize(fs, save);
-            Console.Write("Game saved!");
+            Console.WriteLine("Game saved!");
             fs.Flush();
             fs.Close();
             fs.Dispose();
@@ -217,6 +217,7 @@ namespace ClassGame
         //prints all save slots
         public static void printSaves()
         {
+            Console.Clear();
             gameSave save1 = callSave(1);
             gameSave save2 = callSave(2);
             gameSave save3 = callSave(3);
