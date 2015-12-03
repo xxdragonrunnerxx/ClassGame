@@ -5,7 +5,8 @@
   * tile
   * 
   * 
-  * 
+  * tile(string s, ConsoleColor f, ConsoleColor b, bool w)
+  * isWall()
   ***********************************************************/
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace ClassGame
     [Serializable]
     class tile
     {
+        //variables
         public string symbol { get; set; }
         public ConsoleColor ForegroundColor { get; set; }
         public ConsoleColor BackgroundColor { get; set; }
@@ -25,6 +27,7 @@ namespace ClassGame
         public bool stairsHere { get; set; }
         public bool wall { get; set; }
         public bool door { get; set; }
+        //creates tile
         public tile(string s, ConsoleColor f, ConsoleColor b, bool w)
         {
             symbol = s;
@@ -34,6 +37,7 @@ namespace ClassGame
             stairsHere = false;
             wall = w;
         }
+        //checks if wall
         public bool isWall()
         {
             if (wall)

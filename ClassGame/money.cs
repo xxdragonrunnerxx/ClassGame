@@ -12,7 +12,7 @@ namespace ClassGame
 
         public void startingGold()
         {
-            gold = dieroller.totalRoll();
+            gold = dieroller.totalRoll(10, 6);
         }
 
         public void decreaseGold()

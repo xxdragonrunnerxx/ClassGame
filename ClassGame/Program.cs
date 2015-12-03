@@ -1,4 +1,20 @@
-﻿using System;
+﻿/***********************************************************
+  * Bradley Massey
+  * 9/6/2015
+  * C#
+  * Program
+  * 
+  * 
+  * Save(playerClass p, board[] b, int f)
+  * newMaps()
+  * saveGame(gameSave save)
+  * validSave(string saveSlot)
+  * callSave(int x)
+  * printSaves()
+  * loadGame()
+  * newPlayer()
+  ***********************************************************/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +27,7 @@ namespace ClassGame
 {
     class Program
     {
+        //set window size
         [DllImport("kernel32.dll", ExactSpelling = true)]
 
         private static extern IntPtr GetConsoleWindow();
@@ -26,15 +43,15 @@ namespace ClassGame
 
         static void Main(string[] args)
         {
+            //set window size
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             ShowWindow(ThisConsole, MAXIMIZE);
+            //variables
             bool again = true;
             gameSave save;
-
             playerClass character;
             int floor=0;
             board[] gameMaps = new board[15];
-            
             do
             {
                 Console.Write("Do you want to load a game?Y/N");
@@ -64,11 +81,13 @@ namespace ClassGame
             } while (again);
             MainGame.Play(character, gameMaps, floor);
         }
+        //sets up gamesave
         public static void Save(playerClass p, board[] b, int f)
         {
             gameSave save = new gameSave(p, b, f);
             saveGame(save);
         }
+        //creates mapes for game
         public static board[] newMaps()
         {
             String[] story = Story.newStory();
@@ -94,6 +113,7 @@ namespace ClassGame
             }
                 return map;
         }
+        //saves game
         public static void saveGame(gameSave save)
         {
             bool repeat = false;
@@ -142,6 +162,7 @@ namespace ClassGame
             fs.Dispose();
 
         }
+        //checks if it is a valid save
         private static string validSave(string saveSlot)
         {
             int saveNumber;
@@ -165,6 +186,7 @@ namespace ClassGame
             } while (again);
             return saveSlot;
         }
+        //calls save file
         public static gameSave callSave(int x)
         {
             gameSave save;
@@ -192,6 +214,7 @@ namespace ClassGame
             return new gameSave(new playerClass("None"), new board[15], 0);
 
         }
+        //prints all save slots
         public static void printSaves()
         {
             gameSave save1 = callSave(1);
@@ -216,6 +239,7 @@ namespace ClassGame
             Console.WriteLine("Name: " + save4.player.getName());
             Console.WriteLine("Floor: " + save4.floor);
         }
+        //loads save file
         public static gameSave loadGame()
         {
             gameSave save;
@@ -270,6 +294,7 @@ namespace ClassGame
 
 
         }
+        //creates new player
         public static playerClass newPlayer()
         {
             playerClass character;
