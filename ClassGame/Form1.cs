@@ -19,7 +19,7 @@ namespace ClassGame
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            
+            Console.WriteLine(Story.getStory(MainGame.floor));
         }
     }
 }
