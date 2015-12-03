@@ -13,9 +13,9 @@ namespace ClassGame
         string name;
         string history;
         int health;
-
+        string gender;
         money playerMoney;
-        int[] satus = new int[3];
+        int[] status = new int[3];
         int[] modify = new int[3];
 
         string[] statName = { "Strength", "Defense", "Health" };
@@ -25,14 +25,14 @@ namespace ClassGame
         public playerClass()
         {
             level = 1;
-            name = genName();
+            name = genMaleName();
             history = genHis();
             rollStats();
             playerMoney = new money();
             playerMoney.startingGold();
             modSet();
         }
-
+        
         public void printMoney()
         {
             playerMoney.printGold();
@@ -45,17 +45,19 @@ namespace ClassGame
             if (s == "MALE")
             {
                 name = genMaleName();
+                gender = "Male";
             }
             else
             {
                 name = genFemaleName();
+                gender = "Female";
             }
             history = genHis();
             rollStats();
             modSet();
         }
 
-        public static bool newCharachter()
+        public static bool newCharacter()
         {
             return newCharacterSelect;
         }
@@ -67,7 +69,7 @@ namespace ClassGame
 
         private void modSet()
         {
-            for (int x = 0; x < 3; x++) ;
+            for (int x = 0; x < 3; x++) 
             {
                 modify[x] = modifier(status[x]);
             }
@@ -200,12 +202,12 @@ namespace ClassGame
 
         private void rollStats()
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 3; i++)
             {
                 int stat = 0;
                 for (; stat < 12;)
                 {
-                    stat = dieRoller.totalRoll();
+                    stat = dieroller.totalRoll();
                 }
                 status[i] = stat;
             }
@@ -221,7 +223,8 @@ namespace ClassGame
                 if (0 == (stat.CompareTo(statName[i])))
                 {
                     status[i] = status[i] + add;
-                    again = modSet();
+                    again = false;
+                    modSet();
                 }
                 else
                 {

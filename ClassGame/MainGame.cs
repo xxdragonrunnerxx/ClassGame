@@ -36,12 +36,12 @@ namespace ClassGame
 
             do
             {
-                if(f>gameMaps.Length-1)
+                if (f > gameMaps.Length - 1)
                 {
                     WIN();
                     break;
                 }
-                
+
                 board presentMap = gameMaps[f];
                 Console.SetCursorPosition(0, 0);
                 presentMap.printBoard();
@@ -51,7 +51,21 @@ namespace ClassGame
                 cki = Console.ReadKey();
                 if (presentMap.town)
                 {
-
+                    Console.WriteLine("Where would you like to go?");
+                    Console.Write("(G)eneral Store, (A)rmory, (O)ut of Town:");
+                    if (cki.Key == ConsoleKey.G)
+                    {
+                        //run general store
+                    }
+                    else if (cki.Key == ConsoleKey.A)
+                    {
+                        //run armory
+                    }
+                    else if (cki.Key == ConsoleKey.O)
+                    {
+                        f++;
+                        clearScreen();
+                    }
                 }
                 else
                 {

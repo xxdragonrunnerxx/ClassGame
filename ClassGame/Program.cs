@@ -211,7 +211,7 @@ namespace ClassGame
             catch (ArgumentException save1)
             {
             }
-            return new gameSave(new playerClass("None"), new board[15], 0);
+            return new gameSave(new playerClass(), new board[15], 0);
 
         }
         //prints all save slots
