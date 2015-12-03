@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-/***********************************************************
+﻿/***********************************************************
   * Bradley Massey
-  * 9/6/2015
+  * 12/3/2015
   * C#
   * gameSave
   * 
   * 
   * gameSave(playerClass p, board[] b, int f)
   ***********************************************************/
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
