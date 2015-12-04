@@ -23,24 +23,24 @@ namespace ClassGame
     {
         //variable
         public static int floor { get; set; }
+        gameSave save;
+        public static playerClass character { get; set; }
+        public static board[] gameMaps { get; set; }
         //main game
         public static void Play(playerClass p, board[] b, int f)
         {
             floor = f;
-            clearScreen();
-            gameSave save;
-            playerClass character = p;
-            board[] gameMaps = b;
+            clearScreen();;
+            character = p;
+            gameMaps = b;
             ConsoleKeyInfo cki;
-
             do
             {
                 if (f > gameMaps.Length - 1)
                 {
                     WIN();
-                    break;
+                    return;
                 }
-
                 board presentMap = gameMaps[f];
                 Console.SetCursorPosition(0, 0);
                 presentMap.printBoard();
@@ -149,7 +149,7 @@ namespace ClassGame
         public static void endGame()
         {
             clearScreen();
-            int pauseTime = 200;
+            int pauseTime = 250;
             System.Threading.Thread.Sleep(pauseTime);
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.BackgroundColor = ConsoleColor.DarkGreen;
