@@ -325,5 +325,132 @@ namespace ClassGame
             } while (again && playerClass.newCharacter());
             return character;
         }
+
+        //Function to create a list of weapons, armors, and shields for use in item shops
+        public static List<equipItem> createEquipList()
+        {
+            List<equipItem> equipList = new List<equipItem>();
+
+            //Deciding how many of each will be in the inventory (Between 1 and 3 of each)
+            int armorAmt = dieroller.totalRoll(1, 3);
+            int weaponAmt = dieroller.totalRoll(1, 3);
+            int shieldAmt = dieroller.totalRoll(1, 3);
+
+            //Generates armors for each of the above mentioned amounts
+            for(int i = 0; i < armorAmt; i++)
+            {
+                equipItem newArmor = Item.genArmor();
+                equipList.Add(newArmor);
+            }
+
+            //Generates weapons for each of the above mentioned amounts
+            for (int i = 0; i < weaponAmt; i++)
+            {
+                equipItem newWeapon = Item.genWeapon();
+                equipList.Add(newWeapon);
+            }
+
+            //Generates shields for each of the above mentioned amounts
+            for (int i = 0; i < shieldAmt; i++)
+            {
+                equipItem newShield = Item.genShield();
+                equipList.Add(newShield);
+            }
+
+            return equipList;
+        }
+
+        //Function to create a list of weapons, armors, and shields for use in item shops
+        public static List<consumable> createConsumableList()
+        {
+            List<consumable> consumableList = new List<consumable>();
+
+            //Deciding how many of each will be in the inventory (Between 1 and 3 of each)
+            int consumableAmt = dieroller.totalRoll(1, 3);
+
+            //Generates armors for each of the above mentioned amounts
+            for (int i = 0; i < consumableAmt; i++)
+            {
+                consumable newConsumable = consumable.genConsumable();
+                consumableList.Add(newConsumable);
+            }
+
+            return consumableList;
+        }
+
+        //Function to construct the consumable stores according to which town you are in
+        public static generalStore generateGeneralStore()
+        {
+            List<Person> storePatrons1 = new List<Person>();
+            List<Person> storePatrons2 = new List<Person>();
+
+            //Constructing people to mingle with inside of the stores
+            Person Alby = new Person("Alby","You're going into the castle, yeah? \n You know to steer clear of the Bloody Chapel?");
+            Person Fiona = new Person("Fiona", "There's a spirit that roams the halls of that castle. \n They call him The Elemental");
+            Person Toby = new Person("Toby", "Down in those caverns? \n I can't believe your going down there. \n Have you got enough food?");
+            Person Johann = new Person("Johann", "I had a cousin who attempted to pass through the caverns. \n He was carrying something of great value. \n Maybe it's still down there.");
+
+
+            //Adding two patrons to each list
+            storePatrons1.Add(Alby);
+            storePatrons1.Add(Fiona);
+            storePatrons2.Add(Johann);
+            storePatrons2.Add(Toby);
+
+            //The first store in the game 
+            if (MainGame.floor == 1)
+            {
+                generalStore genStore1 = new generalStore(createConsumableList(), storePatrons1, 20, 20, 3, new Person("mcJohn", "Hey, I'm mcJohn"));
+                return genStore1;
+            }
+
+            //The second store in the game
+            else
+            {
+                generalStore genStore2 = new generalStore(createConsumableList(), storePatrons2, 20, 20, 3, new Person("Ronaldo","Hurry up and Buy!!!!"));
+                return genStore2;
+            }
+
+            
+        }
+
+        //Function to construct Weapon, Shield, Armor Shops according to which town you are in
+        public static itemShop generateItemStore()
+        {
+            List<Person> storePatrons1 = new List<Person>();
+            List<Person> storePatrons2 = new List<Person>();
+
+            //Constructing people to mingle with inside of the stores
+
+            Person Quin = new Person("Quin", "There's an easy way to know if The Elemental is near. \n They say you'll start to smell the worst odor when he comes around.");
+            Person Flannigan = new Person("Flannigan", "You'd better not go into the cellar of the castle. \n They used to stack bodies down there. \n Something is bound to be down there still...");
+            Person Yazmeeth = new Person("Yazmeeth", "Have you found anything good passing through the forests? \n I found a really nice shield out there once.");
+            Person Bart = new Person("Bart", "Don't you know what's down in the caverns?!?!?! \n I hope you've bought a good weapon to fight those horrific things off.");
+
+
+            //Adding two patrons to each list
+
+            storePatrons1.Add(Quin);
+            storePatrons1.Add(Flannigan);
+            storePatrons2.Add(Yazmeeth);
+            storePatrons2.Add(Bart);
+
+            //The first store in the game 
+            if (MainGame.floor == 1)
+            {
+                itemShop itemStore1 = new itemShop(createEquipList(), storePatrons1, 20, 20, 3, new Person("mcRobert", "I don't really have much to say right now. \n Can I sell you something?"));
+                return itemStore1;
+            }
+
+            //The second store in the game
+            else
+            {
+                itemShop itemStore2 = new itemShop(createEquipList(), storePatrons2, 20, 20, 3, new Person("Walter", "The caverns, huh?? \n You're out of your element."));
+                return itemStore2;
+            }
+
+
+        }
+
     }
 }
