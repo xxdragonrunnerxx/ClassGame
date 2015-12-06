@@ -360,15 +360,15 @@ namespace ClassGame
             return equipList;
         }
 
-        //Function to create a list of weapons, armors, and shields for use in item shops
+        //Function to create a list of consumable items for use in general stores
         public static List<consumable> createConsumableList()
         {
             List<consumable> consumableList = new List<consumable>();
 
-            //Deciding how many of each will be in the inventory (Between 1 and 3 of each)
-            int consumableAmt = dieroller.totalRoll(1, 3);
+            //Deciding how manywill be in the inventory
+            int consumableAmt = dieroller.totalRoll(3, 3);
 
-            //Generates armors for each of the above mentioned amounts
+            //Generates consumables for the aforementioned amount
             for (int i = 0; i < consumableAmt; i++)
             {
                 consumable newConsumable = consumable.genConsumable();
@@ -385,10 +385,10 @@ namespace ClassGame
             List<Person> storePatrons2 = new List<Person>();
 
             //Constructing people to mingle with inside of the stores
-            Person Alby = new Person("Alby","You're going into the castle, yeah? \n You know to steer clear of the Bloody Chapel?");
-            Person Fiona = new Person("Fiona", "There's a spirit that roams the halls of that castle. \n They call him The Elemental");
-            Person Toby = new Person("Toby", "Down in those caverns? \n I can't believe your going down there. \n Have you got enough food?");
-            Person Johann = new Person("Johann", "I had a cousin who attempted to pass through the caverns. \n He was carrying something of great value. \n Maybe it's still down there.");
+            Person Alby = new Person("Alby","You're going into the castle, yeah? \n\nYou know to steer clear of the Bloody Chapel?");
+            Person Fiona = new Person("Fiona", "There's a spirit that roams the halls of that castle. \n\nThey call him The Elemental");
+            Person Toby = new Person("Toby", "Down in those caverns? \n\nI can't believe your going down there. \n\nHave you got enough food?");
+            Person Johann = new Person("Johann", "I had a cousin who attempted to pass through the caverns. \n\nHe was carrying something of great value. \n\nMaybe it's still down there.");
 
 
             //Adding two patrons to each list
@@ -422,10 +422,10 @@ namespace ClassGame
 
             //Constructing people to mingle with inside of the stores
 
-            Person Quin = new Person("Quin", "There's an easy way to know if The Elemental is near. \n They say you'll start to smell the worst odor when he comes around.");
-            Person Flannigan = new Person("Flannigan", "You'd better not go into the cellar of the castle. \n They used to stack bodies down there. \n Something is bound to be down there still...");
-            Person Yazmeeth = new Person("Yazmeeth", "Have you found anything good passing through the forests? \n I found a really nice shield out there once.");
-            Person Bart = new Person("Bart", "Don't you know what's down in the caverns?!?!?! \n I hope you've bought a good weapon to fight those horrific things off.");
+            Person Quin = new Person("Quin", "There's an easy way to know if The Elemental is near. \n\nThey say you'll start to smell the worst odor when he comes around.");
+            Person Flannigan = new Person("Flannigan", "You'd better not go into the cellar of the castle. \n\nThey used to stack bodies down there. \n\nSomething is bound to be down there still...");
+            Person Yazmeeth = new Person("Yazmeeth", "Have you found anything good passing through the forests? \n\nI found a really nice shield out there once.");
+            Person Bart = new Person("Bart", "Don't you know what's down in the caverns?!?!?! \n\nI hope you've bought a good weapon to fight those horrific things off.");
 
 
             //Adding two patrons to each list

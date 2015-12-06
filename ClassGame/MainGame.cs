@@ -50,12 +50,14 @@ namespace ClassGame
                 
                 if (presentMap.town)
                 {
+                    
                     Console.WriteLine("Where would you like to go?");
                     Console.Write("(G)eneral Store, (A)rmory, (O)ut of Town:");
                     cki = Console.ReadKey();
                     if (cki.Key == ConsoleKey.G)
                     {
-                        //run general store
+                        generalStore genStore = Program.generateGeneralStore();
+                        genStore.enterShop();
                         clearScreen();
                     }
                     else if (cki.Key == ConsoleKey.A)
