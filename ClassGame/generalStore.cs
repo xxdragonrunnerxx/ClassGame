@@ -30,7 +30,39 @@ namespace ClassGame
             //subtract from players money
             
         }
+        public void tab(int i)
+        {
+            int[] tabAmount = new int[itemList.Count];
+            for (int x = 0; x < itemList.Count; x++)
+            {
+                tabAmount[x] = (itemList[x].name.Length / 8) + 1;
+            }
+            int largest = tabAmount[itemList.Count-1];
+            for (int x = 0; x < itemList.Count; x++)
+            {
 
+                if (tabAmount[x] > largest)
+                {
+                    largest = tabAmount[x];
+
+                }
+            }
+            for (int x = 0; x < itemList.Count; x++)
+            {
+                if (itemList[x].name.Length % 8 > 5)
+                    tabAmount[x] = largest - tabAmount[x] - 1;
+                else
+                    tabAmount[x] = largest - tabAmount[x];
+            }
+            for (
+                int x = 0; x <= tabAmount[i]; x++)
+            {
+
+                Console.BackgroundColor = ConsoleColor.DarkYellow;
+                Console.Write("\t");
+                Console.BackgroundColor = ConsoleColor.Black;
+            }
+        }
 
         public void showInventory()
         {
@@ -54,7 +86,9 @@ namespace ClassGame
                     {
                         for (int i = 0; i < itemList.Count; i++)
                         {
-                            Console.WriteLine(i + 1 + "." + itemList[i].name + "\t\t Price:" + itemList[i].price + "\n");
+                            Console.Write(i + 1 + "." + itemList[i].name);
+                            tab(i);
+                            Console.WriteLine("Price:" + itemList[i].price + "\n");
 
                         }
                         Console.WriteLine("\n\nEnter the corresponding number to purchase any item or Enter to go back.");
