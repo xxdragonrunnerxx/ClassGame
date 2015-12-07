@@ -57,10 +57,7 @@ namespace ClassGame
             for (
                 int x = 0; x <= tabAmount[i]; x++)
             {
-
-                Console.BackgroundColor = ConsoleColor.DarkYellow;
                 Console.Write("\t");
-                Console.BackgroundColor = ConsoleColor.Black;
             }
         }
 
