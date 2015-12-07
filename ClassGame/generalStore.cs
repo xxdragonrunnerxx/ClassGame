@@ -41,13 +41,13 @@ namespace ClassGame
 
                 Console.Clear();
                 //Iterates through the shops list of items and display them
-                while (flag)
+                do
                 {
                     if (itemList.Count == 0)
                     {
                         Console.WriteLine("I seem to be out of inventory at this moment. \n\nPress Enter to proceed...");
                         Console.ReadKey();
-                        enterShop();
+                        return;
 
                     }
                     else
@@ -61,6 +61,8 @@ namespace ClassGame
 
                         purchaseInput = Console.ReadLine();
 
+                        if (purchaseInput == "")
+                            return;
                         //Attempts to turn string input into an int
                         bool result = Int32.TryParse(purchaseInput, out number);
                         number--;
@@ -76,10 +78,6 @@ namespace ClassGame
                             {
                                 Console.WriteLine("I'm sorry but I'm sold out of those...\nTry purchasing something that's in stock");
                             }
-                        }
-                        else
-                        {
-                            enterShop();
                         }
 
                         //Check to see if the user wants to buy another item
@@ -99,16 +97,8 @@ namespace ClassGame
                             Console.Clear();
                             flag = false;
                         }
-                        else
-                        {
-                            enterShop();
-                        }
-                        if (flag == false)
-                        {
-                            enterShop();
-                        }
                     }
-                }
+                } while (flag);
             }
         }
 
@@ -124,14 +114,14 @@ namespace ClassGame
             int number;
             bool flag = true;
 
-            while (flag)
+            do
             {
                 Console.WriteLine("Who would you like to speak with?\n\n");
 
                 //Lists the available patrons
                 for (int i = 0; i < patrons.Count; i++)
                 {
-                    Console.WriteLine(i+1 + "." + patrons[i].Name);
+                    Console.WriteLine(i + 1 + "." + patrons[i].Name);
                     Console.WriteLine("\n");
                 }
 
@@ -143,24 +133,20 @@ namespace ClassGame
                 bool result = Int32.TryParse(mingleInput, out number);
                 if (result)
                 {
-                    try {
+                    try
+                    {
                         Console.Clear();
                         Console.WriteLine(patrons[number - 1].Name);
                         Console.WriteLine("\n\n");
-                        Console.WriteLine(patrons[number-1].Story);
+                        Console.WriteLine(patrons[number - 1].Story);
                         Console.ReadKey();
                     }
-                    catch(ArgumentOutOfRangeException e)
+                    catch (ArgumentOutOfRangeException e)
                     {
                         Console.WriteLine("I'm sorry but that person isn't here...\n\n\nPress Enter to return");
                         Console.ReadKey();
                         Console.Clear();
-                        Mingle();
                     }
-                }
-                else
-                {
-                    enterShop();
                 }
 
                 //Check to see if the user wants to view another story
@@ -181,16 +167,8 @@ namespace ClassGame
                     Console.Clear();
                     flag = false;
                 }
-                else
-                {
-                    enterShop();
-                }
-            if (flag == false)
-                {
-                    enterShop();
-                }
 
-            }
+            } while (flag);
         }
 
         public void buyItem(equipItem i)
@@ -223,10 +201,6 @@ namespace ClassGame
                 //This Doesn't work properly
                 Console.Clear();
                 return;
-            }
-            else
-            {
-                enterShop();
             }
 
         }
