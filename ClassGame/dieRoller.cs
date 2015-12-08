@@ -1,11 +1,13 @@
 ﻿/***********************************************************
   * Bradley Massey
-  * 9/6/2015
+  * 12/3/2015
   * C#
   * dieroller
   * 
   * 
-  * die roller
+  * roll(int s)
+  * totalRoll(int t = 3, int s = 6)
+  * targetRoll(int t, int s, int target)
   ***********************************************************/
 using System;
 using System.Collections.Generic;

@@ -1,2 +1,18 @@
-E:\David\Davids things\ClassGame\ClassGame\bin\Debug\ClassGame.exe.config
-E:\David\Davids things\ClassGame\ClassGame\obj\Debug\ClassGame.exe
+E:\School\C#\ClassGame\ClassGame\bin\Debug\ClassGame.exe.config
+E:\School\C#\ClassGame\ClassGame\bin\Debug\ClassGame.exe
+E:\School\C#\ClassGame\ClassGame\bin\Debug\ClassGame.pdb
+E:\School\C#\ClassGame\ClassGame\obj\Debug\ClassGame.csprojResolveAssemblyReference.cache
+E:\School\C#\ClassGame\ClassGame\obj\Debug\ClassGame.exe
+E:\School\C#\ClassGame\ClassGame\obj\Debug\ClassGame.pdb
+T:\School\C#\ClassGame\ClassGame\bin\Debug\ClassGame.exe.config
+T:\School\C#\ClassGame\ClassGame\obj\Debug\ClassGame.exe
+T:\School\C#\ClassGame\ClassGame\obj\Debug\ClassGame.pdb
+T:\School\C#\ClassGame\ClassGame\obj\Debug\ClassGame.csprojResolveAssemblyReference.cache
+T:\School\C#\ClassGame\ClassGame\bin\Debug\ClassGame.exe
+T:\School\C#\ClassGame\ClassGame\bin\Debug\ClassGame.pdb
+C:\Users\mcjod\Source\Repos\ClassGame\ClassGame\bin\Debug\ClassGame.exe.config
+C:\Users\mcjod\Source\Repos\ClassGame\ClassGame\obj\Debug\ClassGame.exe
+C:\Users\mcjod\Source\Repos\ClassGame\ClassGame\obj\Debug\ClassGame.pdb
+C:\Users\mcjod\Source\Repos\ClassGame\ClassGame\bin\Debug\ClassGame.exe
+C:\Users\mcjod\Source\Repos\ClassGame\ClassGame\bin\Debug\ClassGame.pdb
+C:\Users\mcjod\Source\Repos\ClassGame\ClassGame\obj\Debug\ClassGame.csprojResolveAssemblyReference.cache

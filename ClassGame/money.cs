@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace ClassGame
 {
+    [Serializable]
     class money
     {
         int gold = 0;
 
         public void startingGold()
         {
-            gold = dieroller.totalRoll();
+            gold = dieroller.totalRoll(10, 6);
         }
 
         public void decreaseGold()

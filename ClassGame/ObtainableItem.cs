@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassGame
 {
+    [Serializable]
     public abstract class ObtainableItem
     {
         public Guid ID { get; set; }

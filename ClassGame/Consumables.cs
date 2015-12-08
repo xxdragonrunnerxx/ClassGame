@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassGame
 {
-     
+    [Serializable]
     class consumable
     {
         public string name;
@@ -44,7 +44,7 @@ namespace ClassGame
             new consumable("An unopened box of fortune cookies",10,10,10,100),
         };
 
-            int stat1 = StaticRandom.Instance.Next(1, 110);
+            int stat1 = StaticRandom.Instance.Next(15, 110);
 
             consumable con = (from consumable in C
                                 where consumable.rarity <= stat1

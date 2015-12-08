@@ -1,11 +1,42 @@
 ﻿/***********************************************************
   * Bradley Massey
-  * 9/6/2015
+  * 12/3/2015
   * C#
   * Board
   * 
   * 
-  * 
+  *
+  * board(int x)
+  * board(int x, int y)
+  * board(int x, int y,int buildings)
+  * inverseFloor(int lenght, int width)
+  * playerLocation()
+  * printBoard()
+  * newRoom()
+  * newBuilding(int b)
+  * corridor()
+  * exit(int turns)
+  * setFloor(int x, int y)
+  * setWildernessFloor(int x, int y)
+  * setSidewalk(int x, int y)
+  * setBuilding(int x, int y)
+  * checkBuilding(int l, int w, int x, int y)
+  * makeBuilding(int l, int w, int x, int y,int building)
+  * checkRoom(int l, int w, int x, int y)
+  * makeRoom(int l, int w, int x, int y)
+  * createWilderness(int d)
+  * setStairs()
+  * setStairs(bool town)
+  * setPlayer()
+  * setPlayer(int location)
+  * setDoors(int x, int y)
+  * checkOddRoom(int s, int o, int x, int y)
+  * makeOddRoom(int s, int o, int x, int y)
+  * checkStairs(int x, int y)
+  * moveDOWN(int x, int y)
+  * moveUP(int x, int y)
+  * moveRIGHT(int x, int y)
+  * moveLEFT(int x, int y)
   ***********************************************************/
 using System;
 using System.Collections.Generic;
@@ -18,6 +49,7 @@ namespace ClassGame
     [Serializable]
     class board
     {
+        //variables
         private tile[,] gameBoard;
         public int length= dieroller.totalRoll(10, 20);
         public int width=dieroller.totalRoll(10, 10);
@@ -102,8 +134,6 @@ namespace ClassGame
                 newBuilding(count);
             }
             inverseFloor(length, width);
-            setPlayer(dieroller.totalRoll(1, 6));
-            setStairs(true);
         }
         //sets buildings
         private void inverseFloor(int lenght, int width)
@@ -800,6 +830,7 @@ namespace ClassGame
             }
 
         }
+        //creates a new building
         private void newBuilding(int b)
         {
             int x = dieroller.totalRoll(1, length);
@@ -938,6 +969,7 @@ namespace ClassGame
                 }
             }
         }
+        //set floor for dungeon tile
         private void setFloor(int x, int y)
         {
             gameBoard[x, y].symbol = " ";
@@ -945,6 +977,7 @@ namespace ClassGame
             gameBoard[x, y].ForegroundColor = ConsoleColor.Blue;
             gameBoard[x, y].BackgroundColor = ConsoleColor.DarkRed;
         }
+        //set wilderness floor tile
         private void setWildernessFloor(int x, int y)
         {
             gameBoard[x, y].symbol = " ";
@@ -952,22 +985,23 @@ namespace ClassGame
             gameBoard[x, y].ForegroundColor = ConsoleColor.Blue;
             gameBoard[x, y].BackgroundColor = ConsoleColor.DarkGreen;
         }
+        //set town sidewalk tile
         private void setSidewalk(int x, int y)
         {
-
             gameBoard[x, y].wall = false;
             gameBoard[x, y].symbol = " ";
             gameBoard[x, y].ForegroundColor = ConsoleColor.Blue;
             gameBoard[x, y].BackgroundColor = ConsoleColor.DarkGreen;
         }
+        //set town building tile
         private void setBuilding(int x, int y)
         {
-
             gameBoard[x, y].wall = true;
             gameBoard[x, y].symbol = "‡";
             gameBoard[x, y].ForegroundColor = ConsoleColor.Blue;
             gameBoard[x, y].BackgroundColor = ConsoleColor.DarkGreen;
         }
+        //checks to see if can place a building 
         private bool checkBuilding(int l, int w, int x, int y)
         {
             x--;
@@ -988,6 +1022,7 @@ namespace ClassGame
             }
             return true;
         }
+        //makes new building
         private void makeBuilding(int l, int w, int x, int y,int building)
         {
             int y1 = y;
@@ -1006,6 +1041,7 @@ namespace ClassGame
             Doors[building, 1] = (y1 + (w / 2));
             setDoors(Doors[building, 0], Doors[building, 1]);
         }
+        //checks to see if can place a room
         private bool checkRoom(int l, int w, int x, int y)
         {
             int y1 = y;
@@ -1024,6 +1060,7 @@ namespace ClassGame
             }
             return true;
         }
+        //makes new room
         private void makeRoom(int l, int w, int x, int y)
         {
             int y1 = y;
@@ -1038,6 +1075,7 @@ namespace ClassGame
                 x++;
             }
         }
+        //creates wilderness
         private void createWilderness(int d)
         {
 
@@ -1065,6 +1103,7 @@ namespace ClassGame
             setPlayer(dieroller.totalRoll(1, 6));
             exit(20);
         }
+        //set stairs
         private void setStairs()
         {
             int x = StaticRandom.Instance.Next(1, length);
@@ -1078,6 +1117,7 @@ namespace ClassGame
             else
                 setStairs();
         }
+        //set stairs for town
         private void setStairs(bool town)
         {
             int x = length-1;
@@ -1091,6 +1131,7 @@ namespace ClassGame
             else
                 setStairs();
         }
+        //set player
         private void setPlayer()
         {
             int x = StaticRandom.Instance.Next(1, length);
@@ -1114,6 +1155,7 @@ namespace ClassGame
             else
                 setPlayer();
         }
+        //set player in perticular location
         private void setPlayer(int location)
         {
 
@@ -1252,10 +1294,12 @@ namespace ClassGame
             if (again)
                 setPlayer(dieroller.totalRoll(1, 6));
         }
+        //sets door to building
         public void setDoors(int x, int y)
         {
             gameBoard[x, y].door = true;
         }
+        // //checks to see if can place a odd shaped room
         private bool checkOddRoom(int s, int o, int x, int y)
         {
             int y1 = y;
@@ -1328,6 +1372,7 @@ namespace ClassGame
             }
             return true;
         }
+        //makes odd shaped room
         private void makeOddRoom(int s, int o, int x, int y)
         {
             int y1 = y;
@@ -1384,12 +1429,14 @@ namespace ClassGame
                 }
             }
         }
+        //checks to see if can place stairs
         public bool checkStairs(int x, int y)
         {
             if (gameBoard[x, y].stairsHere)
                 return true;
             return false;
         }
+        //moves player down
         public void moveDOWN(int x, int y)
         {
             try {
@@ -1403,6 +1450,7 @@ namespace ClassGame
             {
             }
         }
+        //moves player up
         public void moveUP(int x, int y)
         {
             try
@@ -1417,9 +1465,11 @@ namespace ClassGame
             {
             }
         }
+        //moves player right
         public void moveRIGHT(int x, int y)
         {
-            try {
+            try
+            {
                 if (Movement.canMove(gameBoard[x + 1, y]))
                 {
                     gameBoard[x, y].playerHere = false;
@@ -1429,7 +1479,8 @@ namespace ClassGame
             catch (IndexOutOfRangeException i)
             {
             }
-}
+        }
+        //moves player left
         public void moveLEFT(int x, int y)
         {
             try {

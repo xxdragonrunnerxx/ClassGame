@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassGame
 {
+    [Serializable]
     class Weapons : ObtainableItem
     {
 
