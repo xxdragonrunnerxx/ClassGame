@@ -353,7 +353,7 @@ namespace ClassGame
             //Generates shields for each of the above mentioned amounts
             for (int i = 0; i < shieldAmt; i++)
             {
-                equipItem newShield = Item.genShield();
+                 equipItem newShield = Item.genShield();
                 equipList.Add(newShield);
             }
 
