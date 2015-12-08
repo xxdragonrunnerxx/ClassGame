@@ -210,30 +210,34 @@ namespace ClassGame
 
         public void enterShop()
         {
-            Console.Clear();
-            Greetings();
-
-            ConsoleKeyInfo cki;
-            cki = Console.ReadKey();
-
-            if (cki.Key == ConsoleKey.T)
+            bool again = true;
+            do
             {
                 Console.Clear();
-                Mingle();    
-            }
+                Greetings();
 
-            else if (cki.Key == ConsoleKey.V)
-            {
-                Console.Clear();
-                showInventory();    
-            }
+                ConsoleKeyInfo cki;
+                cki = Console.ReadKey();
 
-            else if (cki.Key == ConsoleKey.L)
-            {
-                //This Doesn't work properly
-                Console.Clear();
-                return;
-            }
+                if (cki.Key == ConsoleKey.T)
+                {
+                    Console.Clear();
+                    Mingle();
+                }
+
+                else if (cki.Key == ConsoleKey.V)
+                {
+                    Console.Clear();
+                    showInventory();
+                }
+
+                else if (cki.Key == ConsoleKey.L)
+                {
+                    //This Doesn't work properly
+                    Console.Clear();
+                    again = false;
+                }
+            } while (again);
 
         }
     }
