@@ -54,8 +54,7 @@ namespace ClassGame
                 else
                     tabAmount[x] = largest - tabAmount[x];
             }
-            for (
-                int x = 0; x <= tabAmount[i]; x++)
+            for (int x = 0; x <= tabAmount[i]; x++)
             {
                 Console.Write("\t");
             }
