@@ -16,24 +16,24 @@ namespace ClassGame
             List<material> M = new List<material>
             {
                 new material("Wood",1,1,1,1),
-                new material("Steel",3,4,2,5),
-                new material("Iron",4,3,2,5),
-                new material("Plastic",0,0,2,2),
-                new material("Polymer",3,5,5,5),
-                new material("Chainmail",2,4,1,5),
-                new material("Adamantine",7,7,6,10),
-                new material("Gold",5,5,5,5),
-                new material("Silver",4,4,4,5),
-                new material("Bone",4,8,6,10),
-                new material("Stone",1,2,2,2),
-                new material("Bronze",4,3,3,5),
-                new material("Copper",3,4,3,5),
-                new material("Obsidian",7,7,7,10),
+                new material("Steel",3,4,2,50),
+                new material("Iron",4,3,2,40),
+                new material("Plastic",0,0,2,10),
+                new material("Polymer",3,5,5,60),
+                new material("Chainmail",2,4,1,70),
+                new material("Adamantine",7,7,6,90),
+                new material("Gold",5,5,5,65),
+                new material("Silver",4,4,4,55),
+                new material("Bone",4,8,6,80),
+                new material("Stone",1,2,2,20),
+                new material("Bronze",4,3,3,27),
+                new material("Copper",3,4,3,33),
+                new material("Obsidian",7,7,7,100),
             };
 
             List<material> Armor = new List<material>
             {
-                new material("Tunic",1,1,1,10),
+                new material("Tunic",1,1,1,1),
                 new material("Robe",3,4,2,30),
                 new material("Riot Suit",4,3,2,45),
                 new material("Helmet",0,0,2,35),
@@ -67,7 +67,7 @@ namespace ClassGame
             int newAtk = mat.atkUp + item.atkUp;
             int newDef = mat.defUp + item.defUp;
             int newHealth = mat.healthUp + item.healthUp;
-            string fullName = mat.name + item.name;
+            string fullName = mat.name + " " + item.name;
 
             equipItem armor = new equipItem(fullName, newAtk, newDef, newHealth);
 
@@ -81,37 +81,37 @@ namespace ClassGame
         List<material> M = new List<material>
             {
                 new material("Wood",1,1,1,1),
-                new material("Steel",3,4,2,5),
-                new material("Iron",4,3,2,5),
-                new material("Plastic",0,0,2,2),
-                new material("Polymer",3,5,5,5),
-                new material("Chainmail",2,4,1,5),
-                new material("Adamantine",7,7,6,10),
-                new material("Gold",5,5,5,5),
-                new material("Silver",4,4,4,5),
-                new material("Bone",4,8,6,10),
-                new material("Stone",1,2,2,2),
-                new material("Bronze",4,3,3,5),
-                new material("Copper",3,4,3,5),
-                new material("Obsidian",7,7,7,10),
+                new material("Steel",3,4,2,50),
+                new material("Iron",4,3,2,40),
+                new material("Plastic",0,0,2,10),
+                new material("Polymer",3,5,5,60),
+                new material("Chainmail",2,4,1,70),
+                new material("Adamantine",7,7,6,90),
+                new material("Gold",5,5,5,65),
+                new material("Silver",4,4,4,55),
+                new material("Bone",4,8,6,80),
+                new material("Stone",1,2,2,20),
+                new material("Bronze",4,3,3,27),
+                new material("Copper",3,4,3,33),
+                new material("Obsidian",7,7,7,100),
             };
 
         List<material> WeaponItem = new List<material>
             {
                 new material("SlingShot",1,1,1,1),
-                new material("Dagger",3,4,2,3),
-                new material("Mace",4,3,2,4),
-                new material("Bow",3,5,2,3),
-                new material("Whip",3,5,5,4),
-                new material("DartGun",2,4,1,2),
-                new material("Musket",7,7,6,2),
-                new material("ChainSaw",5,5,5,5),
-                new material("Sword",4,4,4,5),
-                new material("Uzi",8,5,5,10),
-                new material("Staff",1,2,2,2),
-                new material("Boomerang",2,2,2,4),
-                new material("Trident",7,7,6,10),
-                new material("Rocket Launcher",7,7,7,10),
+                new material("Dagger",3,4,2,10),
+                new material("Mace",4,3,2,27),
+                new material("Bow",3,5,2,20),
+                new material("Whip",3,5,5,35),
+                new material("DartGun",2,4,1,44),
+                new material("Musket",7,7,6,51),
+                new material("ChainSaw",5,5,5,59),
+                new material("Sword",4,4,4,66),
+                new material("Uzi",8,5,5,100),
+                new material("Staff",1,2,2,75),
+                new material("Boomerang",2,2,2,85),
+                new material("Trident",7,7,6,95),
+                new material("Rocket Launcher",7,7,7,105),
             };
 
         int stat1 = StaticRandom.Instance.Next(1, 110);
@@ -132,7 +132,7 @@ namespace ClassGame
         int newAtk = mat.atkUp + item.atkUp;
         int newDef = mat.defUp + item.defUp;
         int newHealth = mat.healthUp + item.healthUp;
-        string fullName = mat.name + item.name;
+        string fullName = mat.name + " " + item.name;
         double price = StaticRandom.Instance.Next(10,100);
 
 
@@ -147,19 +147,19 @@ namespace ClassGame
             List<material> M = new List<material>
             {
                 new material("Wood",1,1,1,1),
-                new material("Steel",3,4,2,5),
-                new material("Iron",4,3,2,5),
-                new material("Plastic",0,0,2,2),
-                new material("Polymer",3,5,5,5),
-                new material("Chainmail",2,4,1,5),
-                new material("Adamantine",7,7,6,10),
-                new material("Gold",5,5,5,5),
-                new material("Silver",4,4,4,5),
-                new material("Bone",4,8,6,10),
-                new material("Stone",1,2,2,2),
-                new material("Bronze",4,3,3,5),
-                new material("Copper",3,4,3,5),
-                new material("Obsidian",7,7,7,10),
+                new material("Steel",3,4,2,50),
+                new material("Iron",4,3,2,40),
+                new material("Plastic",0,0,2,10),
+                new material("Polymer",3,5,5,60),
+                new material("Chainmail",2,4,1,70),
+                new material("Adamantine",7,7,6,90),
+                new material("Gold",5,5,5,65),
+                new material("Silver",4,4,4,55),
+                new material("Bone",4,8,6,80),
+                new material("Stone",1,2,2,20),
+                new material("Bronze",4,3,3,27),
+                new material("Copper",3,4,3,33),
+                new material("Obsidian",7,7,7,100),
             };
 
             List<material> Shield = new List<material>
@@ -200,7 +200,7 @@ namespace ClassGame
             int newAtk = mat.atkUp + item.atkUp;
             int newDef = mat.defUp + item.defUp;
             int newHealth = mat.healthUp + item.healthUp;
-            string fullName = mat.name + item.name;
+            string fullName = mat.name + " " + item.name + " shield";
 
             equipItem shield = new equipItem(fullName, newAtk, newDef, newHealth);
 

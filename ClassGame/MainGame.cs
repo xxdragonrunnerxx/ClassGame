@@ -62,7 +62,8 @@ namespace ClassGame
                     }
                     else if (cki.Key == ConsoleKey.A)
                     {
-                        //run armory
+                        itemShop ItemShop = Program.generateItemStore();
+                        ItemShop.enterShop();
                         clearScreen();
                     }
                     else if (cki.Key == ConsoleKey.O)
