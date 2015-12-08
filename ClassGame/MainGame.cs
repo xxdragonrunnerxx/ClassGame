@@ -62,7 +62,7 @@ namespace ClassGame
                     }
                     else if (cki.Key == ConsoleKey.A)
                     {
-                        itemShop ItemShop = Program.generateItemStore();
+                        itemShop ItemShop = Program.generateItemStore(f);
                         ItemShop.enterShop();
                         clearScreen();
                     }

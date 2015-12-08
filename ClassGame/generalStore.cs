@@ -197,6 +197,7 @@ namespace ClassGame
                 {
                     Console.Clear();
                     flag = false;
+                    return;
                 }
 
             } while (flag);
