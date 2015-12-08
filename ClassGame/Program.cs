@@ -40,6 +40,7 @@ namespace ClassGame
         private const int MAXIMIZE = 3;
         private const int MINIMIZE = 6;
         private const int RESTORE = 9;
+        internal static readonly object genStore1;
 
         static void Main(string[] args)
         {
@@ -379,7 +380,7 @@ namespace ClassGame
         }
 
         //Function to construct the consumable stores according to which town you are in
-        public static generalStore generateGeneralStore()
+        public static generalStore generateGeneralStore(int f)
         {
             List<Person> storePatrons1 = new List<Person>();
             List<Person> storePatrons2 = new List<Person>();
@@ -398,7 +399,7 @@ namespace ClassGame
             storePatrons2.Add(Toby);
 
             //The first store in the game 
-            if (MainGame.floor == 1)
+            if (f == 1)
             {
                 generalStore genStore1 = new generalStore(createConsumableList(), storePatrons1, 20, 20, 3, new Person("mcJohn", "Hey, I'm mcJohn"));
                 return genStore1;
@@ -415,7 +416,7 @@ namespace ClassGame
         }
 
         //Function to construct Weapon, Shield, Armor Shops according to which town you are in
-        public static itemShop generateItemStore()
+        public static itemShop generateItemStore(int f)
         {
             List<Person> storePatrons1 = new List<Person>();
             List<Person> storePatrons2 = new List<Person>();
@@ -436,7 +437,7 @@ namespace ClassGame
             storePatrons2.Add(Bart);
 
             //The first store in the game 
-            if (MainGame.floor == 1)
+            if (f == 1)
             {
                 itemShop itemStore1 = new itemShop(createEquipList(), storePatrons1, 20, 20, 3, new Person("mcRobert", "I don't really have much to say right now. \n Can I sell you something?"));
                 return itemStore1;

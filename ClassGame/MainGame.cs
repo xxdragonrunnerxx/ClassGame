@@ -56,7 +56,7 @@ namespace ClassGame
                     cki = Console.ReadKey();
                     if (cki.Key == ConsoleKey.G)
                     {
-                        generalStore genStore = Program.generateGeneralStore();
+                        generalStore genStore = Program.generateGeneralStore(f);
                         genStore.enterShop();
                         clearScreen();
                     }
