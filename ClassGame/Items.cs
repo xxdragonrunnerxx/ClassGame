@@ -75,7 +75,7 @@ namespace ClassGame
 
     
 
-    public static equipItem genWeapon()
+        public static equipItem genWeapon()
     {
         List<material> M = new List<material>
             {
@@ -208,7 +208,6 @@ namespace ClassGame
 
     }
 
-
     class material
     {
         public string name;
@@ -217,7 +216,6 @@ namespace ClassGame
         public int defUp;
         public int healthUp;
 
-
         public material(string n, int aUp = 0, int dUp = 0, int hUp = 0, int r = 0)
         {
             name = n;
@@ -225,7 +223,6 @@ namespace ClassGame
             atkUp = aUp;
             defUp = dUp;
             healthUp = hUp;
-
         }
     }
 
@@ -246,5 +243,4 @@ namespace ClassGame
             price = p;
         }
     }
-
 }

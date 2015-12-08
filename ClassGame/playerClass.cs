@@ -1,4 +1,13 @@
-﻿using System;
+﻿/***********************************************************
+* David Moreland
+* 12/3/15
+* C#
+* playerClass
+* 
+* 
+* 
+***********************************************************/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +19,14 @@ namespace ClassGame
     class playerClass
     {
         int level;
-        string name;
-        string history;
         int health;
+        string name;
+        string gender;
+        string history;
 
         money playerMoney;
-        int[] satus = new int[3];
+
+        int[] status = new int[3];
         int[] modify = new int[3];
 
         string[] statName = { "Strength", "Defense", "Health" };
@@ -25,7 +36,7 @@ namespace ClassGame
         public playerClass()
         {
             level = 1;
-            name = genName();
+            name = genCharacter();
             history = genHis();
             rollStats();
             playerMoney = new money();
@@ -38,11 +49,13 @@ namespace ClassGame
             playerMoney.printGold();
         }
 
-        public playerClass(int l, string s)
+        public playerClass(int l, string g)
+// determines which name gen is used      
         {
             level = l;
-            s = s.ToUpper();
-            if (s == "MALE")
+            g = g.ToUpper();
+
+            if (g == "MALE")
             {
                 name = genMaleName();
             }
@@ -67,7 +80,9 @@ namespace ClassGame
 
         private void modSet()
         {
-            for (int x = 0; x < 3; x++) ;
+            int x;
+
+            for (x = 0; x < 3; x++) 
             {
                 modify[x] = modifier(status[x]);
             }
@@ -205,7 +220,7 @@ namespace ClassGame
                 int stat = 0;
                 for (; stat < 12;)
                 {
-                    stat = dieRoller.totalRoll();
+                    stat = dieroller.totalRoll();
                 }
                 status[i] = stat;
             }
@@ -221,7 +236,8 @@ namespace ClassGame
                 if (0 == (stat.CompareTo(statName[i])))
                 {
                     status[i] = status[i] + add;
-                    again = modSet();
+                    again = false;
+                    modSet();               
                 }
                 else
                 {
