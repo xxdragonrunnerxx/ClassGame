@@ -62,7 +62,7 @@ namespace ClassGame
                     }
                     else if (cki.Key == ConsoleKey.A)
                     {
-                        itemShop ItemShop = Program.generateItemStore();
+                        itemShop ItemShop = Program.generateItemStore(f);
                         ItemShop.enterShop();
                         clearScreen();
                     }
@@ -156,6 +156,19 @@ namespace ClassGame
             System.Threading.Thread.Sleep(pauseTime);
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine(" ▄▀▀▀▀▄    ▄▀▀█▄   ▄▀▀▄ ▄▀▄  ▄▀▀█▄▄▄▄  ");
+            System.Threading.Thread.Sleep(pauseTime);
+            Console.WriteLine(" █         ▐ ▄▀ ▀▄ █  █ ▀  █ ▐  ▄▀   ▐ ");
+            System.Threading.Thread.Sleep(pauseTime);
+            Console.WriteLine(" █    ▀▄▄    █▄▄▄█ ▐  █    █   █▄▄▄▄▄  ");
+            System.Threading.Thread.Sleep(pauseTime);
+            Console.WriteLine(" █     █ █  ▄▀   █   █    █    █    ▌  ");
+            System.Threading.Thread.Sleep(pauseTime);
+            Console.WriteLine(" ▐▀▄▄▄▄▀ ▐ █   ▄▀  ▄▀   ▄▀    ▄▀▄▄▄▄   ");
+            System.Threading.Thread.Sleep(pauseTime);
+            Console.WriteLine(" ▐         ▐   ▐   █    █     █    ▐   ");
+            System.Threading.Thread.Sleep(pauseTime);
+            Console.WriteLine("                   ▐    ▐     ▐                                 ▐                  ");
             Console.WriteLine(" ▄▀▀▀▀▄    ▄▀▀█▄   ▄▀▀▄ ▄▀▄  ▄▀▀█▄▄▄▄      ▄▀▀▀▀▄   ▄▀▀▄ ▄▀▀▄  ▄▀▀█▄▄▄▄  ▄▀▀▄▀▀▀▄  ");
             System.Threading.Thread.Sleep(pauseTime);
             Console.WriteLine(" █         ▐ ▄▀ ▀▄ █  █ ▀  █ ▐  ▄▀   ▐     █      █ █   █    █ ▐  ▄▀   ▐ █   █   █ ");
