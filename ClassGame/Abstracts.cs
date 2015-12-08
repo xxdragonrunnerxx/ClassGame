@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassGame
 {
-
+    [Serializable]
     abstract class building
     {
         //Abstract class for any building 
