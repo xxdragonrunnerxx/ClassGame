@@ -40,6 +40,11 @@ namespace ClassGame
         private const int MAXIMIZE = 3;
         private const int MINIMIZE = 6;
         private const int RESTORE = 9;
+        internal static readonly object genStore1;
+
+        
+
+
 
         static void Main(string[] args)
         {
