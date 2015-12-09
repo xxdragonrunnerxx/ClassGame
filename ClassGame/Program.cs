@@ -332,9 +332,9 @@ namespace ClassGame
             List<equipItem> equipList = new List<equipItem>();
 
             //Deciding how many of each will be in the inventory (Between 1 and 3 of each)
-            int armorAmt = dieroller.totalRoll(1, 3);
-            int weaponAmt = dieroller.totalRoll(1, 3);
-            int shieldAmt = dieroller.totalRoll(1, 3);
+            int armorAmt = dieroller.totalRoll(2, 3);
+            int weaponAmt = dieroller.totalRoll(2, 3);
+            int shieldAmt = dieroller.totalRoll(2, 3);
 
             //Generates armors for each of the above mentioned amounts
             for(int i = 0; i < armorAmt; i++)
@@ -366,7 +366,7 @@ namespace ClassGame
             List<consumable> consumableList = new List<consumable>();
 
             //Deciding how manywill be in the inventory
-            int consumableAmt = dieroller.totalRoll(3, 3);
+            int consumableAmt = dieroller.totalRoll(3, 6);
 
             //Generates consumables for the aforementioned amount
             for (int i = 0; i < consumableAmt; i++)
